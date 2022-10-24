@@ -22,35 +22,70 @@ function playRound(playerSelection, computerSelection) {
     //Compare player and computer selections and declare round winner
     playerSelection = capitalize(playerSelection);
 
-    const playerWin = "You Win! " + playerSelection + " beats " + computerSelection + "!";
-    const computerWin = "You Lose! " + computerSelection + " beats " + playerSelection + "!";
-    const tie = "It's a tie! You both chose " + playerSelection + "!";
+    //const playerWin = "You Win! " + playerSelection + " beats " + computerSelection + "!";
+    //const computerWin = "You Lose! " + computerSelection + " beats " + playerSelection + "!";
+    //const tie = "It's a tie! You both chose " + playerSelection + "!";
 
     if (playerSelection == computerSelection) {
-        return tie;
+        return "Tie";
     }
     switch (playerSelection) {
         case "Rock":
             if (computerSelection == "Scissors") {
-                return playerWin;
+                return "Player win";
             }
             else {
-                return computerWin;
+                return "Computer win";
             }
         case "Paper":
             if (computerSelection == "Rock") {
-                return playerWin;
+                return "Player win";
             }
             else {
-                return computerWin;
+                return "Computer win";
             }
         case "Scissors":
             if (computerSelection == "Paper") {
-                return playerWin;
+                return "Player win";
             }
             else {
-                return computerWin;
+                return "Computer win";
             }
+    }
+}
+
+function game() {
+    //Play a five round game and report a winner at the end
+    var playerScore = 0;
+    var computerScore = 0;
+
+    for (let i = 0; i < 5; i++) {
+        var playerChoice = prompt("Choose Rock, Paper, or Scissors");
+        var roundOutput = "";
+
+        switch (playRound(playerChoice, getComputerChoice())) {
+            case "Player win":
+                playerScore = playerScore + 1;
+                roundOutput = "Round " + (i+1) + ": Player Wins.";
+                break;
+            case "Computer win":
+                computerScore = computerScore + 1;
+                roundOutput = "Round " + (i+1) + ": Computer Wins.";
+                break;
+            case "Tie":
+                roundOutput = "Round " + (i+1) + ": Tie.";
+                break;
+        }
+    }
+
+    if (playerScore > computerScore) {
+        console.log("Player wins the game.");
+    }
+    else if (playerScore < computerScore) {
+        console.log("Computer wins the game.");
+    }
+    else {
+        console.log("Game ends in a tie.");
     }
 }
 
@@ -58,3 +93,5 @@ function capitalize(str) {
     result = str.slice(0, 1).toUpperCase() + str.slice(1, str.length).toLowerCase()
     return result;
 }
+
+game();
