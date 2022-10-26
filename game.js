@@ -6,22 +6,17 @@ const round = document.querySelector('.round-result');
 const pScoreDisplay = document.querySelector('.player-score');
 const cScoreDisplay = document.querySelector('.computer-score');
 
+btns.forEach((button) => {
+    button.addEventListener('click', function(e) {
+        playRound(e.target.className, getComputerChoice());
+    });
+});
+
 function getComputerChoice() {
     //Returns a random choice of 'Rock', 'Paper', or 'Scissors' as the computer move.
     move = Math.floor(Math.random() * 3);
-    choice = ""
-
-    switch(move) {
-        case 0:
-            choice = "Rock";
-            break;
-        case 1:
-            choice = "Paper";
-            break;
-        case 2:
-            choice = "Scissors";
-            break;
-    }
+    moves = ["Rock", "Paper", "Scissors"];
+    choice = moves[move];
 
     return choice;
 }
@@ -30,61 +25,37 @@ function playRound(playerSelection, computerSelection) {
     //Compare player and computer selections and declare round winner
 
     if (playerSelection == computerSelection) {
-        updateRoundResult("tie");
+        round.textContent = "A tie! Nobody wins the round.";
     }
     else {
-        switch (playerSelection) {
-            case "Rock":
-                if (computerSelection == "Scissors") {
-                    updateRoundResult("player win");
-                }
-                else {
-                    updateRoundResult("comp win");
-                }
-                break;
-            case "Paper":
-                if (computerSelection == "Rock") {
-                    updateRoundResult("player win");
-                }
-                else {
-                    updateRoundResult("comp win");
-                }
-                break;
-            case "Scissors":
-                if (computerSelection == "Paper") {
-                    updateRoundResult("player win");
-                }
-                else {
-                    updateRoundResult("comp win");
-                }
-                break;
+        if (playerSelection == "Rock" && computerSelection == "Scissors" ||
+            playerSelection == "Paper" && computerSelection == "Rock" ||
+            playerSelection == "Scissors" && computerSelection == "Paper") {
+
+            playerScore += 1;
+            round.textContent = "You win the round! " + playerSelection + " beats " + computerSelection + "!";
+            pScoreDisplay.textContent = playerScore;
+        }
+        if (playerSelection == "Rock" && computerSelection == "Paper" ||
+            playerSelection == "Paper" && computerSelection == "Scissors" ||
+            playerSelection == "Scissors" && computerSelection == "Rock") {
+            
+            computerScore += 1;
+            round.textContent = "The computer wins the round! " + computerSelection + " beats " + playerSelection + "!";
+            cScoreDisplay.textContent = computerScore;
         }
     }
-}
-
-function updateRoundResult(outcome) {
-    //update the relevant scores and round result divs
-
-    switch(outcome) {
-        case "tie":
-            round.textContent = "A tie! Nobody wins the round.";
-            break;
-        case "player win":
-            playerScore += 1;
-            round.textContent = "You win the round.";
-            pScoreDisplay.textContent = playerScore;
-            break;
-        case "comp win":
-            computerScore += 1;
-            round.textContent = "The computer wins the round.";
-            cScoreDisplay.textContent = computerScore;
-            break;
+    if (playerScore >= 5) {
+        declareWinner("Player");
+    }
+    else if (computerScore >= 5) {
+        declareWinner("Computer");
     }
 }
 
-
-btns.forEach((button) => {
-    button.addEventListener('click', function(e) {
-        playRound(e.target.className, getComputerChoice());
+function declareWinner(winner) {
+    round.textContent = winner + " has reached 5 first and won the game!"
+    btns.forEach((button) => {
+        button.disabled = true;
     });
-});
+}
