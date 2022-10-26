@@ -20,7 +20,6 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     //Compare player and computer selections and declare round winner
-    playerSelection = capitalize(playerSelection);
 
     //const playerWin = "You Win! " + playerSelection + " beats " + computerSelection + "!";
     //const computerWin = "You Lose! " + computerSelection + " beats " + playerSelection + "!";
@@ -54,10 +53,16 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+const btns = document.querySelectorAll('button');
+btns.forEach((button) => {
+    button.addEventListener('click', function(e) {
+        console.log(playRound(e.target.className, getComputerChoice()));
+    });
+});
+
 function game() {
     //Play a five round game and report a winner at the end
-    var playerScore = 0;
-    var computerScore = 0;
+
 
     for (let i = 0; i < 5; i++) {
         var playerChoice = prompt("Choose Rock, Paper, or Scissors");
@@ -88,10 +93,3 @@ function game() {
         console.log("Game ends in a tie.");
     }
 }
-
-function capitalize(str) {
-    result = str.slice(0, 1).toUpperCase() + str.slice(1, str.length).toLowerCase()
-    return result;
-}
-
-game();
