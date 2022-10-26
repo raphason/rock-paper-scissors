@@ -5,6 +5,9 @@ const btns = document.querySelectorAll('button');
 const round = document.querySelector('.round-result');
 const pScoreDisplay = document.querySelector('.player-score');
 const cScoreDisplay = document.querySelector('.computer-score');
+const reset = document.querySelector('.reset');
+
+resetGame();
 
 btns.forEach((button) => {
     button.addEventListener('click', function(e) {
@@ -65,16 +68,19 @@ function declareWinner(winner) {
             button.disabled = true;
         }
     });
+    reset.style.visibility = 'visible';
 }
 
 function resetGame() {
-    var playerScore = 0;
-    var computerScore = 0;
+    playerScore = 0;
+    computerScore = 0;
     pScoreDisplay.textContent = playerScore;
     cScoreDisplay.textContent = computerScore;
     round.textContent = '';
+    reset.style.visibility = 'hidden';
 
     btns.forEach((button) => {
         button.disabled = false;
     });
+    
 }

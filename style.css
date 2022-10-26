@@ -27,7 +27,7 @@ body {
     align-self: center;
     display: flex;
     gap: 64px;
-    margin: 16px;
+    margin: 32px;
 }
 
 .scores {
@@ -53,6 +53,13 @@ body {
 
 .round-result {
     text-align: center;
+}
+
+.res2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
 }
 
 .footer {
