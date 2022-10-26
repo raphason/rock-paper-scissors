@@ -8,7 +8,12 @@ const cScoreDisplay = document.querySelector('.computer-score');
 
 btns.forEach((button) => {
     button.addEventListener('click', function(e) {
-        playRound(e.target.className, getComputerChoice());
+        if (button.className != "reset") {
+            playRound(button.className, getComputerChoice());
+        }
+        else {
+            resetGame();
+        }
     });
 });
 
@@ -56,6 +61,20 @@ function playRound(playerSelection, computerSelection) {
 function declareWinner(winner) {
     round.textContent = winner + " has reached 5 first and won the game!"
     btns.forEach((button) => {
-        button.disabled = true;
+        if (button.className != "reset") {
+            button.disabled = true;
+        }
+    });
+}
+
+function resetGame() {
+    var playerScore = 0;
+    var computerScore = 0;
+    pScoreDisplay.textContent = playerScore;
+    cScoreDisplay.textContent = computerScore;
+    round.textContent = '';
+
+    btns.forEach((button) => {
+        button.disabled = false;
     });
 }
