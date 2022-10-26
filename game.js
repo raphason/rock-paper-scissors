@@ -18,9 +18,9 @@ btns.forEach((button) => {
 });
 
 function getComputerChoice() {
-    //Returns a random choice of 'Rock', 'Paper', or 'Scissors' as the computer move.
+    //Returns a random choice of 'Scarab', 'Ibis', or 'Lotus' as the computer move.
     move = Math.floor(Math.random() * 3);
-    moves = ["Rock", "Paper", "Scissors"];
+    moves = ["Scarab", "Ibis", "Lotus"];
     choice = moves[move];
 
     return choice;
@@ -33,17 +33,17 @@ function playRound(playerSelection, computerSelection) {
         round.textContent = "A tie! Nobody wins the round.";
     }
     else {
-        if (playerSelection == "Rock" && computerSelection == "Scissors" ||
-            playerSelection == "Paper" && computerSelection == "Rock" ||
-            playerSelection == "Scissors" && computerSelection == "Paper") {
+        if (playerSelection == "Scarab" && computerSelection == "Lotus" ||
+            playerSelection == "Ibis" && computerSelection == "Scarab" ||
+            playerSelection == "Lotus" && computerSelection == "Ibis") {
 
             playerScore += 1;
             round.textContent = "You win the round! " + playerSelection + " beats " + computerSelection + "!";
             pScoreDisplay.textContent = playerScore;
         }
-        if (playerSelection == "Rock" && computerSelection == "Paper" ||
-            playerSelection == "Paper" && computerSelection == "Scissors" ||
-            playerSelection == "Scissors" && computerSelection == "Rock") {
+        if (playerSelection == "Scarab" && computerSelection == "Ibis" ||
+            playerSelection == "Ibis" && computerSelection == "Lotus" ||
+            playerSelection == "Lotus" && computerSelection == "Scarab") {
             
             computerScore += 1;
             round.textContent = "The computer wins the round! " + computerSelection + " beats " + playerSelection + "!";

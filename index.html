@@ -4,19 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <script src="game.js" defer></script>
-    <title>Rock Paper Scissors Game</title>
+    <title>Ankh Paper Scissors Game</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <button class="Rock">Rock</button>
-    <button class="Paper">Paper</button>
-    <button class="Scissors">Scissors</button>
+    <div class="header">Ankh Paper Scissors</div>
+    <div class="game">
 
-    <div class="player-score">0</div>
-    <div class="computer-score">0</div>
-    <div class="round-result"></div>
+        <div class="buttons">
+            <button class="Scarab"><img src="scarab.png" width=auto height=196></button>
+            <button class="Ibis"><img src="bird.png" width=auto height=196></button>
+            <button class="Lotus"><img src="lotus.png" width=auto height=196></button>
+        </div>
 
-    <button class="reset">Reset</button>
+        <div class="scores">
+            <div class="score-box">
+                <div>Player</div>
+                <div class="player-score">0</div>
+            </div>
+
+            <div class="score-box">
+                <div>Computer</div>
+                <div class="computer-score">0</div>
+            </div>
+        </div>
+
+        <div class="round-result"></div>
+
+        <button class="reset">Reset</button>
+    </div>
+    <div class="footer">
+        <a href="https://www.flaticon.com/free-icons/hieroglyph" title="Hieroglyph icons">Hieroglyph icons created by Freepik - Flaticon</a>
+    </div>
     
 </body>
 </html>
